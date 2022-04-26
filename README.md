@@ -1,2 +1,2 @@
-# reinf-learning-ext
-Reinforcement Learning Extension
+# Reinforcement Learning Extension
+
