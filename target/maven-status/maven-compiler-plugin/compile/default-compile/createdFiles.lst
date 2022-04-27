@@ -1,0 +1,13 @@
+model/StateDefinition.class
+model/ActionSelection.class
+primitives/go/LearningCommand.class
+burlap/AgentStateModel.class
+primitives/setup/RewardCommand.class
+primitives/setup/DiscountFactorCommand.class
+primitives/setup/LearningRateCommand.class
+primitives/setup/ActionSelectionEGreedyCommand.class
+model/AgentLearning.class
+primitives/setup/SetupCommand.class
+burlap/IsEndEpisode.class
+burlap/Reward.class
+primitives/go/DecayEpsilonCommand.class
