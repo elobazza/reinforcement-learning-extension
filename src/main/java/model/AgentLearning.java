@@ -12,7 +12,9 @@ import org.nlogo.api.Context;
 import org.nlogo.api.ExtensionException;
 
 /**
+ * Agent Learning Class
  * @author Eloisa Bazzanella
+ * @since, march, 2022
  */
 public class AgentLearning {
     	

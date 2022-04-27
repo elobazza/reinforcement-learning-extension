@@ -7,10 +7,6 @@ import org.nlogo.api.ExtensionException;
 import org.nlogo.core.Syntax;
 import org.nlogo.core.SyntaxJ;
 
-/**
- *
- * @author Eloísa Bazzanella
- */
 public class SetupCommand implements org.nlogo.api.Command {
 
     @Override

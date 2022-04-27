@@ -30,10 +30,10 @@ public class ActionSelectionEGreedyCommand implements org.nlogo.api.Command {
 
             try {
                 actionSelection.setDecreaseRateReporter(args[2].getReporter());
-                actionSelection.setDecreaseIsNumber(false);
+                actionSelection.decreaseIsNumber = false;
             } catch (ExtensionException e) { 
-              actionSelection.setDecreaseRateNumber(args[2].getDoubleValue()); 
-              actionSelection.setDecreaseIsNumber(true);
+                actionSelection.setDecreaseRateNumber(args[2].getDoubleValue()); 
+                actionSelection.decreaseIsNumber = true;
             }
             
        actionSelection.setMethod("e-greedy");

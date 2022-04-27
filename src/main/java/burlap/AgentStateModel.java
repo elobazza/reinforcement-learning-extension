@@ -13,7 +13,9 @@ import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
 
 /**
+ * Agent State Model Class
  * @author Eloisa Bazzanella
+ * @since  april, 2022
  */
 public class AgentStateModel implements FullStateModel {
 

@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.util.List;
 import org.nlogo.api.AnonymousReporter;
 
 /**
+ * State Definition Class
  * @author Eloisa Bazzanella
+ * @since  march, 2022
  */
 public class StateDefinition {
     

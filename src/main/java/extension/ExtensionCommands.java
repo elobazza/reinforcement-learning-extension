@@ -18,7 +18,9 @@ import primitives.setup.StateDefinitionCommand;
 import primitives.setup.StateDefinitionExtraCommand;
 
 /**
+ * Extension Commands Class
  * @author Eloísa Bazzanella
+ * @since  march, 2022
  */
 public class ExtensionCommands extends DefaultClassManager {
     public void load(PrimitiveManager primitiveManager) {

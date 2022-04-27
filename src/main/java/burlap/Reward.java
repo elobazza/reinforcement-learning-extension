@@ -8,6 +8,11 @@ import model.Session;
 import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
 
+/**
+ * Reward Class
+ * @author Eloísa Bazzanella
+ * @since  april, 2022
+ */
 public class Reward implements RewardFunction {
     
     //VER SE PODE SER DESSA FORMA

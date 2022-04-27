@@ -10,17 +10,19 @@ import org.nlogo.api.AnonymousReporter;
 import org.nlogo.api.ExtensionException;
 
 /**
+ * Action Selection Class
  * @author Eloisa Bazzanella
+ * @since  march, 2022
  */
 public class ActionSelection {
     
-    private Random randomGen;
-    private String method = "";
-    private String typeOf = "";
-    private Double roulette = 0.00;
-    private Double decreaseRateNumber = 0.00;
-    private AnonymousReporter decreaseRateReporter = null;
-    private Boolean decreaseIsNumber = false;
+    public Random randomGen;
+    public String method = "";
+    public String typeOf = "";
+    public Double roulette = 0.00;
+    public Double decreaseRateNumber = 0.00;
+    public AnonymousReporter decreaseRateReporter = null;
+    public Boolean decreaseIsNumber = false;
 
     public ActionSelection() {}
 
@@ -65,42 +67,6 @@ public class ActionSelection {
           throw new ExtensionException("Decrease rate must be a reporter");
         else
           decreaseRateReporter = d;
-    }
-
-    public void setDecreaseIsNumber(Boolean r){
-        this.decreaseIsNumber = r;
-    }
-
-    public void setRandomGen(Random randomGen) {
-        this.randomGen = randomGen;
-    }
-
-    public Double getRoulette() {
-        return this.roulette;
-    }
-
-    public Double getDecreaseRateNumber() {
-        return this.decreaseRateNumber;
-    }
-
-    public Random getRandomGen() {
-        return this.randomGen;
-    }
-
-    public String getMethod() {
-        return this.method;
-    }
-
-    public String getTypeOf() {
-        return this.typeOf;
-    }
-
-    public Boolean getDecreaseIsNumber() {
-        return this.decreaseIsNumber;
-    }
-
-    public AnonymousReporter getDecreaseRateReporter() {
-        return this.decreaseRateReporter;
     }
 
     public int getAction(LinkedHashMap<String, Double> qlist) {

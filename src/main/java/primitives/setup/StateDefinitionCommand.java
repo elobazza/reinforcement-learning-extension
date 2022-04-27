@@ -8,7 +8,6 @@ import org.nlogo.agent.World;
 import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
 import org.nlogo.api.ExtensionException;
-import org.nlogo.core.LogoList;
 import org.nlogo.core.Syntax;
 import org.nlogo.core.SyntaxJ;
 

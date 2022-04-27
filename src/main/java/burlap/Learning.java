@@ -21,7 +21,9 @@ import org.nlogo.api.ExtensionException;
 import primitives.go.DecayEpsilonCommand;
 
 /**
+ * Learning Algorithms Class
  * @author Eloisa Bazzanella
+ * @since  april, 2022
  */
 public class Learning implements DomainGenerator {
     
@@ -57,8 +59,8 @@ public class Learning implements DomainGenerator {
         agentLearning = new QLearning(domain, agent.discountFactor, 
                 new SimpleHashableStateFactory(), 0, agent.learningRate);
         
-        if(agent.actionSelection.getMethod().equals("e-greedy")) {
-            epsilon = new EpsilonGreedy(agentLearning, agent.actionSelection.getRoulette());
+        if(agent.actionSelection.method.equals("e-greedy")) {
+            epsilon = new EpsilonGreedy(agentLearning, agent.actionSelection.roulette);
             agentLearning.setLearningPolicy(epsilon);
         }
     }
@@ -96,9 +98,9 @@ public class Learning implements DomainGenerator {
             env.resetEnvironment();
             
             //DECAIMENTO DO EPSILON
-            if(agent.actionSelection.getMethod().equals("e-greedy")) { 
+            if(agent.actionSelection.method.equals("e-greedy")) { 
                 new DecayEpsilonCommand().perform(args, context);
-                epsilon.setEpsilon(agent.actionSelection.getRoulette()); 
+                epsilon.setEpsilon(agent.actionSelection.roulette); 
             }
            
             printQTable(agentLearning);

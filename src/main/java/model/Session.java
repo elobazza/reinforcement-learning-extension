@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Session Class Singleton
  * @author Eloisa Bazzanella
+ * @since  march, 2022
  */
 public class Session {
     

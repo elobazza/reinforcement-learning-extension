@@ -23,26 +23,26 @@ public class DecayEpsilonCommand implements org.nlogo.api.Command {
         if(agent == null) {
             throw new ExtensionException("Agent " + context.getAgent().id() + " isn't a learner agent");
         } else {
-            if(agent.actionSelection.getTypeOf().equals("rate")) {
-                    Double roulette = agent.actionSelection.getRoulette() * agent.actionSelection.getDecreaseRateNumber();
+            if(agent.actionSelection.typeOf.equals("rate")) {
+                    Double roulette = agent.actionSelection.roulette * agent.actionSelection.decreaseRateNumber;
                     agent.actionSelection.setRoulette(roulette);
 
             } 
-            else if (agent.actionSelection.getTypeOf().equals("value")) {
-                if(agent.actionSelection.getDecreaseIsNumber()) {
-                  agent.actionSelection.setRoulette(agent.actionSelection.getDecreaseRateNumber());
+            else if (agent.actionSelection.typeOf.equals("value")) {
+                if(agent.actionSelection.decreaseIsNumber) {
+                  agent.actionSelection.setRoulette(agent.actionSelection.decreaseRateNumber);
                 } 
                 else {
                     Double roulette;
                     try {
-                        roulette =  (Double) agent.actionSelection.getDecreaseRateReporter().report(context, args);
+                        roulette =  (Double) agent.actionSelection.decreaseRateReporter.report(context, args);
                     } catch (NullPointerException e){
                         throw new ExtensionException("No Epsilon Decay function for agent " + context.getAgent().id() + " was defined");
                     }
                     agent.actionSelection.setRoulette(roulette);
                 }
             } else {
-                Double roulette = agent.actionSelection.getRoulette() * agent.actionSelection.getDecreaseRateNumber();
+                Double roulette = agent.actionSelection.roulette * agent.actionSelection.decreaseRateNumber;
                 agent.actionSelection.setRoulette(roulette);
             }
         }

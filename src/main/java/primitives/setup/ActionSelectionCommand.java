@@ -11,16 +11,14 @@ import model.AgentLearning;
 import model.Session;
 import model.ActionSelection;
 
-
 //https://ccl.northwestern.edu/netlogo/docs/scaladoc/org/nlogo/core/Syntax.html
 
 public class ActionSelectionCommand implements org.nlogo.api.Command {
 
     @Override
     public Syntax getSyntax() {
-        return SyntaxJ.commandSyntax(new int[] 
-            {Syntax.StringType(), Syntax.ListType()}
-        );
+//            {Syntax.StringType(), Syntax.ListType()}
+        return SyntaxJ.commandSyntax(new int[]{});
     }
 
     @Override

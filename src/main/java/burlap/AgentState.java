@@ -10,7 +10,9 @@ import model.Session;
 import org.nlogo.api.Context;
 
 /**
+ * Agent State Class
  * @author Eloisa Bazzanella
+ * @since  april, 2022
  */
 public class AgentState implements MutableState {
     

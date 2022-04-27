@@ -8,7 +8,9 @@ import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
 
 /**
+ * Is End Episode(?) Class
  * @author Eloisa Bazzanella
+ * @since  april, 2022
  */
 public class IsEndEpisode implements TerminalFunction {
     
