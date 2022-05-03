@@ -26,5 +26,13 @@
             <systemPath>${project.basedir}/netlogo-6.2.2.jar</systemPath>
         </dependency>
         
+<!--        <dependency>
+            <groupId>org.nlogo</groupId>
+            <artifactId>netlogo</artifactId>
+            <version>6.1.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/netlogo-6.1.1.jar</systemPath>
+        </dependency>-->
+        
     </dependencies>
 </project>

@@ -4,6 +4,7 @@ import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
 import org.nlogo.api.ExtensionException;
 import org.nlogo.core.Syntax;
+
 import org.nlogo.core.SyntaxJ;
 
 import model.ActionSelection;
@@ -13,8 +14,8 @@ import model.Session;
 public class ActionSelectionRandomCommand implements org.nlogo.api.Command {
 
     public Syntax getSyntax() {
-        return SyntaxJ.commandSyntax(new int[] {});
-//        return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()});
+//        return SyntaxJ.commandSyntax(new int[] {});
+        return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()});
     }
 
     public void perform(Argument[] args, Context context) throws ExtensionException {
