@@ -5,12 +5,13 @@ import org.nlogo.api.ExtensionException;
 import org.nlogo.core.Syntax;
 import model.AgentLearning;
 import model.Session;
+import org.nlogo.core.SyntaxJ;
 
 public class DiscountFactorCommand implements org.nlogo.api.Command {
 	
     public Syntax getSyntax() {
-//		return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()}, Syntax.NumberType());
-        return null;
+	return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()});
+//        return null;
     }
 
     @Override

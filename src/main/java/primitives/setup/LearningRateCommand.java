@@ -11,8 +11,8 @@ import model.Session;
 public class LearningRateCommand implements org.nlogo.api.Command {
 
     public Syntax getSyntax() {
-        return SyntaxJ.commandSyntax(new int[] {});
-//		return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()});
+//        return SyntaxJ.commandSyntax(new int[] {});
+		return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()});
     }
 
     @Override

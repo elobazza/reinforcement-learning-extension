@@ -16,8 +16,9 @@ public class SetupCommand implements org.nlogo.api.Command {
     
     @Override
     public void perform(Argument[] args, Context context) throws ExtensionException {
-        Learning learning = Learning.getInstance(args, context);
+        System.out.println("ANTES DE CRIAR O LEARNING");
         
+        Learning learning = Learning.getInstance(args, context);
         learning.setup();       
     }    
 }

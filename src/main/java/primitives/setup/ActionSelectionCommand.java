@@ -18,7 +18,7 @@ public class ActionSelectionCommand implements org.nlogo.api.Command {
     @Override
     public Syntax getSyntax() {
 //            {Syntax.StringType(), Syntax.ListType()}
-        return SyntaxJ.commandSyntax(new int[]{});
+        return SyntaxJ.commandSyntax(new int[]{Syntax.StringType(), Syntax.ListType()});
     }
 
     @Override
@@ -30,16 +30,14 @@ public class ActionSelectionCommand implements org.nlogo.api.Command {
         }
         String method = args[0].getString().toLowerCase();
       
-        Double decreaseRate = 0.00;
-        List lista = (List) args[1];
-        
+         Double decreaseRate = 0.00;
         if(method.equalsIgnoreCase("e-greedy")) {
-            decreaseRate = (Double) lista.get(1);
+           decreaseRate = (Double) args[1].getList().get(1);
         }
       
         ActionSelection actionSelection = agent.actionSelection;
         actionSelection.setMethod(method);
-        actionSelection.setRoulette((Double) lista.get(0));
+        actionSelection.setRoulette((Double) args[1].getList().get(0));
         actionSelection.setDecreaseRateNumber(decreaseRate);
     }
 }

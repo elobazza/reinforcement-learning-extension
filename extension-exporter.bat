@@ -14,4 +14,4 @@ set INPUT_FILES=/
 REM The directory that contains the files that will be included in the jar
 set BIN_DIR=.\target\classes
 
-jar cmf %MANIFEST_CONTENT% %JARFILE% -C %BIN_DIR% %INPUT_FILES% 
+jar cmf %MANIFEST_CONTENT% %JARFILE% -C %BIN_DIR% %INPUT_FILES%  

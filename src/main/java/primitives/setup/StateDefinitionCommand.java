@@ -14,13 +14,14 @@ import org.nlogo.core.SyntaxJ;
 import model.AgentLearning;
 import model.Session;
 import model.StateDefinition;
+import org.nlogo.core.LogoList;
 
 public class StateDefinitionCommand implements org.nlogo.api.Command {
 
     @Override
     public Syntax getSyntax() {
-        return SyntaxJ.commandSyntax(new int[] {});
-//		return SyntaxJ.commandSyntax(new int[] {Syntax.ListType()});
+//        return SyntaxJ.commandSyntax(new int[] {});
+		return SyntaxJ.commandSyntax(new int[] {Syntax.ListType()});
     }
 
     @Override
@@ -29,7 +30,7 @@ public class StateDefinitionCommand implements org.nlogo.api.Command {
         Turtle turtle = ((World)context.world()).getTurtle(context.getAgent().id());
 
         if(a == null) {
-            List variablesTemp =  (List) args[0];
+            LogoList variablesTemp = args[0].getList();
             List<String> variables = new ArrayList<String>();
 
             for(int i = 0; i < variablesTemp.size(); i++) {

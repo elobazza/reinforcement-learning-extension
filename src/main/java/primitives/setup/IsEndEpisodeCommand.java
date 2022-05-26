@@ -16,9 +16,9 @@ public class IsEndEpisodeCommand implements org.nlogo.api.Command {
 
     public Syntax getSyntax() {
             //List(ReporterType, CommandType)
-//            return SyntaxJ.commandSyntax(
-//                            new int[] {Syntax.ReporterType(), Syntax.CommandType()});
-            return SyntaxJ.commandSyntax(new int[]{});
+            return SyntaxJ.commandSyntax(
+                            new int[] {Syntax.ReporterType(), Syntax.CommandType()});
+//            return SyntaxJ.commandSyntax(new int[]{});
     }
 
     public void perform(Argument[] args, Context context) throws ExtensionException {

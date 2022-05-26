@@ -51,6 +51,8 @@ public class Learning implements DomainGenerator {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         
         Learning gen = new Learning(args, context);
+        
+        System.out.println("CRIANDO GENERATE DOMAIN");
         SADomain domain = (SADomain) gen.generateDomain();
 
         State initialState = new AgentState(context);
@@ -68,8 +70,10 @@ public class Learning implements DomainGenerator {
     public Domain generateDomain() {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         
+        System.out.println("NEW SA DOMAIN");
         SADomain domain = new SADomain();
         
+        System.out.println("DEFINE AÇÕES");
         for(AnonymousCommand action : agent.actions) {
            
             domain.addActionType(new UniversalActionType(action.toString()));
@@ -79,6 +83,7 @@ public class Learning implements DomainGenerator {
         RewardFunction   reward       = new Reward(args, context);
         TerminalFunction isEndEpisode = new IsEndEpisode(context);
 
+        System.out.println("DOMAIN SET MODEL");
         domain.setModel(new FactoredModel(stateModel, reward, isEndEpisode));
         
         return domain;
@@ -103,7 +108,7 @@ public class Learning implements DomainGenerator {
                 epsilon.setEpsilon(agent.actionSelection.roulette); 
             }
            
-            printQTable(agentLearning);
+//            printQTable(agentLearning);
         }
         
         

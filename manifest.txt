@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
-NetLogo-Extension-API-Version: 6.2.2
+Class-Path: *
+NetLogo-Extension-API-Version: 6.1
 Extension-Name: learningextension
 Class-Manager: extension.ExtensionCommands

@@ -14,8 +14,8 @@ public class ActionSelectionEGreedyCommand implements org.nlogo.api.Command {
 
 	@Override
 	public Syntax getSyntax() {
-            return SyntaxJ.commandSyntax(new int[] {});
-//		return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType(), Syntax.StringType(), Syntax.NumberType() | Syntax.ReporterType()});
+//            return SyntaxJ.commandSyntax(new int[] {});
+		return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType(), Syntax.StringType(), Syntax.NumberType() | Syntax.ReporterType()});
 	}
 
 	@Override

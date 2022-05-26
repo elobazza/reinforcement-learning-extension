@@ -12,27 +12,27 @@
     </properties>
     
     <dependencies>
+<!--        <dependency>
+            <groupId>edu.brown.cs.burlap</groupId>
+            <artifactId>burlap</artifactId>
+            <version>3.0.0</version>
+        </dependency>-->
+        
         <dependency>
             <groupId>edu.brown.cs.burlap</groupId>
             <artifactId>burlap</artifactId>
             <version>3.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/burlap-3.0.0.jar</systemPath>
         </dependency>
         
         <dependency>
             <groupId>org.nlogo</groupId>
             <artifactId>netlogo</artifactId>
-            <version>6.2.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/netlogo-6.2.2.jar</systemPath>
-        </dependency>
-        
-<!--        <dependency>
-            <groupId>org.nlogo</groupId>
-            <artifactId>netlogo</artifactId>
             <version>6.1.1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/netlogo-6.1.1.jar</systemPath>
-        </dependency>-->
+            <systemPath>${project.basedir}/libs/netlogo-6.1.1.jar</systemPath>
+        </dependency>
         
     </dependencies>
 </project>
