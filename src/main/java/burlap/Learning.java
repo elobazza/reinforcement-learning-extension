@@ -5,6 +5,7 @@ import burlap.behavior.singleagent.learning.tdmethods.QLearning;
 import burlap.mdp.auxiliary.DomainGenerator;
 import burlap.mdp.core.Domain;
 import burlap.mdp.core.TerminalFunction;
+import burlap.mdp.core.action.ActionType;
 import burlap.mdp.core.action.UniversalActionType;
 import burlap.mdp.core.state.State;
 import burlap.mdp.singleagent.SADomain;
@@ -14,6 +15,7 @@ import burlap.mdp.singleagent.model.RewardFunction;
 import burlap.statehashing.simple.SimpleHashableStateFactory;
 import model.AgentLearning;
 import model.Session;
+import org.nlogo.api.AgentException;
 import org.nlogo.api.AnonymousCommand;
 import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
@@ -47,35 +49,14 @@ public class Learning implements DomainGenerator {
         return instance;
     }
     
-    public void setup() {
+    public void setup() throws AgentException {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         
         Learning gen = new Learning(args, context);
         
-        System.out.println("CRIANDO GENERATE DOMAIN");
-        SADomain domain = (SADomain) gen.generateDomain();
-
-        State initialState = new AgentState(context);
-        env = new SimulatedEnvironment(domain, initialState);
-        
-        agentLearning = new QLearning(domain, agent.discountFactor, 
-                new SimpleHashableStateFactory(), 0, agent.learningRate);
-        
-        if(agent.actionSelection.method.equals("e-greedy")) {
-            epsilon = new EpsilonGreedy(agentLearning, agent.actionSelection.roulette);
-            agentLearning.setLearningPolicy(epsilon);
-        }
-    }
-
-    public Domain generateDomain() {
-        AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
-        
-        System.out.println("NEW SA DOMAIN");
         SADomain domain = new SADomain();
         
-        System.out.println("DEFINE AÇÕES");
         for(AnonymousCommand action : agent.actions) {
-           
             domain.addActionType(new UniversalActionType(action.toString()));
         }
         
@@ -83,43 +64,56 @@ public class Learning implements DomainGenerator {
         RewardFunction   reward       = new Reward(args, context);
         TerminalFunction isEndEpisode = new IsEndEpisode(context);
 
-        System.out.println("DOMAIN SET MODEL");
+        
         domain.setModel(new FactoredModel(stateModel, reward, isEndEpisode));
         
-        return domain;
+        
+        State initialState = new AgentState(context);
+        
+        env = new SimulatedEnvironment(domain, initialState);
+        
+        agentLearning = new QLearning(domain, agent.discountFactor, 
+                new SimpleHashableStateFactory(), 0, agent.learningRate);
+        
+        stateModel.setQLearning(agentLearning);
+        
+        if(agent.actionSelection.method.equals("e-greedy")) {
+            epsilon = new EpsilonGreedy(agentLearning, agent.actionSelection.roulette);
+            agentLearning.setLearningPolicy(epsilon);
+        }
     }
     
     public void go(Argument[] args, Context context) throws ExtensionException {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());  
-        
         //EXECUTA UMA ÚNICA AÇÃO
-        agentLearning.runLearningEpisode(env, 1);
-                    
+        agentLearning.runLearningEpisode(env, 1);            
+        
+        //DECAIMENTO DO EPSILON
+        
         //SE ALCANÇOU ESTADO TERMINAL, FINALIZA EPISODIO
         if(env.isInTerminalState()) {
+//            agentLearning.writeQTable("qtable.txt");;
+            
+            if(agent.actionSelection.method.equals("e-greedy")) { 
+                new DecayEpsilonCommand().perform(args, context);
+                epsilon.setEpsilon(agent.actionSelection.roulette); 
+                System.out.println("NEW EPSILON:" + epsilon.getEpsilon());
+            }
+
+            System.out.println("ALCANÇOU ESTADO TERMINAL");
             
             //CONTADOR DE EPISODIOS
             agent.setEpisode();
             env.resetEnvironment();
             
-            //DECAIMENTO DO EPSILON
-            if(agent.actionSelection.method.equals("e-greedy")) { 
-                new DecayEpsilonCommand().perform(args, context);
-                epsilon.setEpsilon(agent.actionSelection.roulette); 
-            }
-           
-//            printQTable(agentLearning);
+            
+            System.out.println("-------------------------------");
+            System.out.println("EPISODIO: " + agent.episode);
         }
-        
-        
-//        agentLearning.writeQTable("qtable.txt");
     }
     
-    public void printQTable(QLearning agentLearning) {
-        AgentLearning agent =  Session.getInstance().getAgent(context.getAgent()); 
-        
-        for(String state : agent.stateDef.getVars()) {
-//            agentLearning.qValues(state);
-        }
-    }
+
+    @Override
+    public Domain generateDomain() {
+        throw new UnsupportedOperationException("Not supported yet."); }
 }

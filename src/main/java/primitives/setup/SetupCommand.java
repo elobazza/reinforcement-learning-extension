@@ -1,6 +1,9 @@
 package primitives.setup;
 
 import burlap.Learning;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.nlogo.api.AgentException;
 import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
 import org.nlogo.api.ExtensionException;
@@ -19,6 +22,10 @@ public class SetupCommand implements org.nlogo.api.Command {
         System.out.println("ANTES DE CRIAR O LEARNING");
         
         Learning learning = Learning.getInstance(args, context);
-        learning.setup();       
+        try {       
+            learning.setup();
+        } catch (AgentException ex) {
+            Logger.getLogger(SetupCommand.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 }

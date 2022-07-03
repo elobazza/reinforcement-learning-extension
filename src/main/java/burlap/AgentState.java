@@ -2,11 +2,15 @@ package burlap;
 
 import burlap.mdp.core.state.MutableState;
 import burlap.mdp.core.state.State;
-import burlap.mdp.core.state.StateUtilities;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.AgentLearning;
 import model.Session;
+import org.nlogo.api.AgentException;
 import org.nlogo.api.Context;
 
 /**
@@ -17,19 +21,22 @@ import org.nlogo.api.Context;
 public class AgentState implements MutableState {
     
     private Context context;
-    private final static List<Object> keys = Arrays.<Object>asList();
+    private Map<String, Double> state;
 
-    public AgentState(Context context) {
+    public AgentState(Context context) throws AgentException {
         this.context = context;
+        this.state = new HashMap<>();
+        
+        AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
+        
+        this.state = agent.getState(context);
     }
     
     @Override
     public MutableState set(Object variableKey, Object value) {
-        AgentLearning a =  Session.getInstance().getAgent(context.getAgent());
-        
-        for(String state : a.stateDef.getVars()) {
-            if(variableKey.equals(state)) {
-               keys.add(StateUtilities.stringOrNumber(value).intValue());
+        for(String s: state.keySet()) {
+            if(variableKey.equals(s)) {
+                state.replace(s, (Double) value);
             }
         }
         
@@ -37,25 +44,28 @@ public class AgentState implements MutableState {
     }
 
     @Override
-    public List<Object> variableKeys() {
-        return keys;
+    public Object get(Object variableKey) {
+        return state.get(variableKey);
     }
 
     @Override
-    public Object get(Object variableKey) {
-        AgentLearning a =  Session.getInstance().getAgent(context.getAgent());
-        
-        for(String state : a.stateDef.getVars()) {
-            if(variableKey.equals(state)) {
-               return state;
-            }
+    public State copy() {
+        try {
+            return new AgentState(context);
+        } catch (AgentException ex) {
+            Logger.getLogger(AgentState.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
     @Override
-    public State copy() {
-        return new AgentState(context);
+    public List<Object> variableKeys() {
+        List<String> vars = new ArrayList<>();
+        
+        for (String s : state.keySet()) {
+            vars.add(s);
+        }
+        
+        return new ArrayList<Object>(vars);
     }
-    
 }

@@ -28,6 +28,7 @@ public class Reward implements RewardFunction {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         Double reward = (Double) agent.rewardFunc.report(context, args);
         
+        System.out.println("REWARD: " + reward);
         return reward;
     }
 }

@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.nlogo.agent.Turtle;
 import org.nlogo.agent.World;
@@ -53,20 +55,17 @@ public class AgentLearning {
     	this.episode += 1;
     }
     
-    public String getState(Context context) throws AgentException {
-        String state = "";
+    public Map<String, Double> getState(Context context) throws AgentException {
+        Map<String, Double> state = new HashMap<String, Double>();
 
-        for(String v : stateDef.getVars()) {	    	
+        for(String v : stateDef.getVars()) {	
             Turtle turtle = ((World) agent.world()).getTurtle(agent.id());
-            state += turtle.getVariable(v);
+            
+            if(turtle.getVariable(v) != null) {
+                state.put(v, (Double) turtle.getVariable(v));
+            }
         }
 
-        if(stateDef.getReporterAux() == null) {
-            return state;
-        } else {
-            Object[] args = null;
-            String reporterAuxResult = stateDef.getReporterAux().report(context, args).toString();
-            return state + reporterAuxResult;
-        }
+        return state;
     }
 }
