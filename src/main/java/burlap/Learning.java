@@ -64,9 +64,7 @@ public class Learning implements DomainGenerator {
         RewardFunction   reward       = new Reward(args, context);
         TerminalFunction isEndEpisode = new IsEndEpisode(context);
 
-        
         domain.setModel(new FactoredModel(stateModel, reward, isEndEpisode));
-        
         
         State initialState = new AgentState(context);
         
@@ -86,14 +84,12 @@ public class Learning implements DomainGenerator {
     public void go(Argument[] args, Context context) throws ExtensionException {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());  
         //EXECUTA UMA ÚNICA AÇÃO
-        agentLearning.runLearningEpisode(env, 1);            
-        
-        //DECAIMENTO DO EPSILON
+        agentLearning.runLearningEpisode(env, 1);     
         
         //SE ALCANÇOU ESTADO TERMINAL, FINALIZA EPISODIO
         if(env.isInTerminalState()) {
-//            agentLearning.writeQTable("qtable.txt");;
             
+            //DECAIMENTO DO EPSILON
             if(agent.actionSelection.method.equals("e-greedy")) { 
                 new DecayEpsilonCommand().perform(args, context);
                 epsilon.setEpsilon(agent.actionSelection.roulette); 
@@ -106,6 +102,10 @@ public class Learning implements DomainGenerator {
             agent.setEpisode();
             env.resetEnvironment();
             
+//            if(agent.episode == 350) {
+//                System.out.println("EAI, PRINTEI");
+//                agentLearning.writeQTable("qtable.txt");  
+//            }
             
             System.out.println("-------------------------------");
             System.out.println("EPISODIO: " + agent.episode);
