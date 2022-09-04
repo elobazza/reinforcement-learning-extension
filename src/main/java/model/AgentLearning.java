@@ -58,7 +58,10 @@ public class AgentLearning {
     public Map<String, Double> getState(Context context) throws AgentException {
         Map<String, Double> state = new HashMap<String, Double>();
 
+        System.out.println("OI");
         for(String v : stateDef.getVars()) {	
+            System.out.println("agent world "+ agent.world());
+            System.out.println("agent id "+ agent.id());
             Turtle turtle = ((World) agent.world()).getTurtle(agent.id());
             
             if(turtle.getVariable(v) != null) {

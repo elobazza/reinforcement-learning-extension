@@ -1,8 +1,10 @@
 package primitives.setup;
 
-import burlap.Learning;
+import burlap.QLearningAlgorithm;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.AgentLearning;
+import model.Session;
 import org.nlogo.api.AgentException;
 import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
@@ -21,7 +23,7 @@ public class SetupCommand implements org.nlogo.api.Command {
     public void perform(Argument[] args, Context context) throws ExtensionException {
         System.out.println("ANTES DE CRIAR O LEARNING");
         
-        Learning learning = Learning.getInstance(args, context);
+        QLearningAlgorithm learning = QLearningAlgorithm.getInstance(args, context);
         try {       
             learning.setup();
         } catch (AgentException ex) {

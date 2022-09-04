@@ -24,7 +24,6 @@ import org.nlogo.api.Context;
  */
 public class AgentStateModel implements FullStateModel {
 
-    //TALVEZ DE PROBLEMA NISSO, NÃO SEI SE ATUALIZA
     private Argument[] args;
     private Context    context;
     private QLearning  learning;
@@ -63,11 +62,11 @@ public class AgentStateModel implements FullStateModel {
             }
         }
         
-//        try {
-//            state = new AgentState(context);
-//        } catch (AgentException ex) {
-//            Logger.getLogger(AgentStateModel.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            state = new AgentState(context);
+        } catch (AgentException ex) {
+            Logger.getLogger(AgentStateModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         return state;
     }

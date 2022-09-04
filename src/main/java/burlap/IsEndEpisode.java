@@ -22,10 +22,6 @@ public class IsEndEpisode implements TerminalFunction {
         this.context = context;
     }
 
-    public IsEndEpisode(Context context) {
-        this.context = context;
-    }
-    
     public boolean isTerminal(State s) {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         Boolean isEndEpisode = (Boolean) agent.endEpisode.report(context, args);

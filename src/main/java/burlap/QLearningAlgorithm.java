@@ -27,24 +27,24 @@ import primitives.go.DecayEpsilonCommand;
  * @author Eloisa Bazzanella
  * @since  april, 2022
  */
-public class Learning implements DomainGenerator {
+public class QLearningAlgorithm implements DomainGenerator {
     
     private Argument[]           args;
     private Context              context;
     private QLearning            agentLearning;
     private EpsilonGreedy        epsilon;
     private SimulatedEnvironment env;
-    private static Learning      instance = null;
+    private static QLearningAlgorithm      instance = null;
 
-    public Learning(Argument[] args, Context context) {
+    public QLearningAlgorithm(Argument[] args, Context context) {
         this.args = args;
         this.context = context;
         this.epsilon = null;
     }
     
-    public static Learning getInstance(Argument[] args, Context context) {
+    public static QLearningAlgorithm getInstance(Argument[] args, Context context) {
         if (instance == null) {
-            instance = new Learning(args, context);
+            instance = new QLearningAlgorithm(args, context);
         }
         return instance;
     }
@@ -52,7 +52,7 @@ public class Learning implements DomainGenerator {
     public void setup() throws AgentException {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         
-        Learning gen = new Learning(args, context);
+        QLearningAlgorithm gen = new QLearningAlgorithm(args, context);
         
         SADomain domain = new SADomain();
         
@@ -62,13 +62,14 @@ public class Learning implements DomainGenerator {
         
         AgentStateModel  stateModel   = new AgentStateModel(args, context);
         RewardFunction   reward       = new Reward(args, context);
-        TerminalFunction isEndEpisode = new IsEndEpisode(context);
+        TerminalFunction isEndEpisode = new IsEndEpisode(args, context);
 
         domain.setModel(new FactoredModel(stateModel, reward, isEndEpisode));
         
         State initialState = new AgentState(context);
         
         env = new SimulatedEnvironment(domain, initialState);
+        
         
         agentLearning = new QLearning(domain, agent.discountFactor, 
                 new SimpleHashableStateFactory(), 0, agent.learningRate);
@@ -84,7 +85,7 @@ public class Learning implements DomainGenerator {
     public void go(Argument[] args, Context context) throws ExtensionException {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());  
         //EXECUTA UMA ÚNICA AÇÃO
-        agentLearning.runLearningEpisode(env, 1);     
+        agentLearning.runLearningEpisode(env, -1);     
         
         //SE ALCANÇOU ESTADO TERMINAL, FINALIZA EPISODIO
         if(env.isInTerminalState()) {

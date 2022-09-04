@@ -15,7 +15,6 @@ import org.nlogo.api.Context;
  */
 public class Reward implements RewardFunction {
     
-    //VER SE PODE SER DESSA FORMA
     private Argument[] args;
     private Context context;
 
