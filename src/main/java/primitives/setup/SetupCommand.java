@@ -3,8 +3,6 @@ package primitives.setup;
 import burlap.QLearningAlgorithm;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.AgentLearning;
-import model.Session;
 import org.nlogo.api.AgentException;
 import org.nlogo.api.Argument;
 import org.nlogo.api.Context;

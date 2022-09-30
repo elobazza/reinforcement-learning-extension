@@ -34,6 +34,7 @@ public class QLearningAlgorithm implements DomainGenerator {
     private QLearning            agentLearning;
     private EpsilonGreedy        epsilon;
     private SimulatedEnvironment env;
+    private State initialState;
     private static QLearningAlgorithm      instance = null;
 
     public QLearningAlgorithm(Argument[] args, Context context) {
@@ -86,31 +87,19 @@ public class QLearningAlgorithm implements DomainGenerator {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());  
         //EXECUTA UMA ÚNICA AÇÃO
         agentLearning.runLearningEpisode(env, -1);     
-        
-        //SE ALCANÇOU ESTADO TERMINAL, FINALIZA EPISODIO
-        if(env.isInTerminalState()) {
-            
-            //DECAIMENTO DO EPSILON
-            if(agent.actionSelection.method.equals("e-greedy")) { 
-                new DecayEpsilonCommand().perform(args, context);
-                epsilon.setEpsilon(agent.actionSelection.roulette); 
-                System.out.println("NEW EPSILON:" + epsilon.getEpsilon());
-            }
 
-            System.out.println("ALCANÇOU ESTADO TERMINAL");
-            
-            //CONTADOR DE EPISODIOS
-            agent.setEpisode();
-            env.resetEnvironment();
-            
-//            if(agent.episode == 350) {
-//                System.out.println("EAI, PRINTEI");
-//                agentLearning.writeQTable("qtable.txt");  
-//            }
-            
-            System.out.println("-------------------------------");
-            System.out.println("EPISODIO: " + agent.episode);
+        if(agent.actionSelection.method.equals("e-greedy")) { 
+            new DecayEpsilonCommand().perform(args, context);
+            epsilon.setEpsilon(agent.actionSelection.roulette); 
+            System.out.println("NEW EPSILON:" + epsilon.getEpsilon());
         }
+        
+        agent.setEpisode();
+        env.resetEnvironment(); 
+        System.out.println("-------------------------------");
+        System.out.println("EPISODIO: " + agent.episode);
+        
+            
     }
     
 
