@@ -26,12 +26,6 @@ public class ActionSelection {
 
     public ActionSelection() {}
 
-    public ActionSelection(String m, Double e, Double d) throws ExtensionException {
-            setMethod(m);
-            setRoulette(e);
-            setDecreaseRateNumber(d);
-    }
-
     public void setMethod(String m) throws ExtensionException {
         if(m.equalsIgnoreCase("e-greedy") || m.equalsIgnoreCase("random-normal"))
             method = m;

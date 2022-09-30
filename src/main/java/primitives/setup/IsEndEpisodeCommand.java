@@ -8,17 +8,10 @@ import org.nlogo.api.ExtensionException;
 import org.nlogo.core.Syntax;
 import org.nlogo.core.SyntaxJ;
 
-/**
- *
- * @author Eloísa Bazzanella
- */
 public class IsEndEpisodeCommand implements org.nlogo.api.Command {
 
     public Syntax getSyntax() {
-            //List(ReporterType, CommandType)
-            return SyntaxJ.commandSyntax(
-                            new int[] {Syntax.ReporterType(), Syntax.CommandType()});
-//            return SyntaxJ.commandSyntax(new int[]{});
+            return SyntaxJ.commandSyntax(new int[] {Syntax.ReporterType(), Syntax.CommandType()});
     }
 
     public void perform(Argument[] args, Context context) throws ExtensionException {

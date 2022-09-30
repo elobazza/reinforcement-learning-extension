@@ -24,8 +24,8 @@ public class DecayEpsilonCommand implements org.nlogo.api.Command {
             throw new ExtensionException("Agent " + context.getAgent().id() + " isn't a learner agent");
         } else {
             if(agent.actionSelection.typeOf.equals("rate")) {
-                    Double roulette = agent.actionSelection.roulette * agent.actionSelection.decreaseRateNumber;
-                    agent.actionSelection.setRoulette(roulette);
+                Double roulette = agent.actionSelection.roulette * agent.actionSelection.decreaseRateNumber;
+                agent.actionSelection.setRoulette(roulette);
 
             } 
             else if (agent.actionSelection.typeOf.equals("value")) {

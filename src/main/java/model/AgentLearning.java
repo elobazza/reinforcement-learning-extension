@@ -29,6 +29,7 @@ public class AgentLearning {
 
     public Double learningRate   = -1.00;
     public Double discountFactor = -1.00;
+    public Double lambda = -1.00;
     public int episode           = 0; 
     
     public org.nlogo.api.Agent agent = null;
@@ -45,6 +46,13 @@ public class AgentLearning {
           throw new ExtensionException("Learning rate must be a value between 0 and 1");
         }
         learningRate = r;
+    }
+    
+    public void setLambda(Double l) throws ExtensionException {
+        if(l > 1 || l < 0) {
+          throw new ExtensionException("Lambda must be a value between 0 and 1");
+        }
+        lambda = l;
     }
     
     public void addAction(AnonymousCommand a) {

@@ -14,7 +14,6 @@ import model.Session;
 public class ActionSelectionRandomCommand implements org.nlogo.api.Command {
 
     public Syntax getSyntax() {
-//        return SyntaxJ.commandSyntax(new int[] {});
         return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()});
     }
 

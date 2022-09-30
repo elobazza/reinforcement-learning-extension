@@ -5,7 +5,6 @@ import burlap.behavior.singleagent.learning.tdmethods.QLearning;
 import burlap.mdp.auxiliary.DomainGenerator;
 import burlap.mdp.core.Domain;
 import burlap.mdp.core.TerminalFunction;
-import burlap.mdp.core.action.ActionType;
 import burlap.mdp.core.action.UniversalActionType;
 import burlap.mdp.core.state.State;
 import burlap.mdp.singleagent.SADomain;
@@ -70,8 +69,7 @@ public class QLearningAlgorithm implements DomainGenerator {
         State initialState = new AgentState(context);
         
         env = new SimulatedEnvironment(domain, initialState);
-        
-        
+       
         agentLearning = new QLearning(domain, agent.discountFactor, 
                 new SimpleHashableStateFactory(), 0, agent.learningRate);
         
@@ -84,8 +82,7 @@ public class QLearningAlgorithm implements DomainGenerator {
     }
     
     public void go(Argument[] args, Context context) throws ExtensionException {
-        AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());  
-        //EXECUTA UMA ÚNICA AÇÃO
+        AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         agentLearning.runLearningEpisode(env, -1);     
 
         if(agent.actionSelection.method.equals("e-greedy")) { 
@@ -97,13 +94,11 @@ public class QLearningAlgorithm implements DomainGenerator {
         agent.setEpisode();
         env.resetEnvironment(); 
         System.out.println("-------------------------------");
-        System.out.println("EPISODIO: " + agent.episode);
-        
-            
+        System.out.println("EPISODIO: " + agent.episode);            
     }
     
-
     @Override
     public Domain generateDomain() {
-        throw new UnsupportedOperationException("Not supported yet."); }
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
 }

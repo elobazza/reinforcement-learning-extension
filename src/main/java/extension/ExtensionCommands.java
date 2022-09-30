@@ -11,6 +11,7 @@ import primitives.setup.ActionSelectionRandomCommand;
 import primitives.setup.ActionsCommand;
 import primitives.setup.DiscountFactorCommand;
 import primitives.setup.IsEndEpisodeCommand;
+import primitives.setup.LambdaCommand;
 import primitives.setup.LearningRateCommand;
 import primitives.setup.RewardCommand;
 import primitives.setup.SetupCommand;
@@ -28,6 +29,7 @@ public class ExtensionCommands extends DefaultClassManager {
         //COMANDOS SETUP
         primitiveManager.addPrimitive("learning-rate", new LearningRateCommand());
         primitiveManager.addPrimitive("discount-factor", new DiscountFactorCommand());
+        primitiveManager.addPrimitive("lambda", new LambdaCommand());
         primitiveManager.addPrimitive("action-selection", new ActionSelectionCommand());
         primitiveManager.addPrimitive("action-selection-egreedy", new ActionSelectionEGreedyCommand());
         primitiveManager.addPrimitive("action-selection-random", new ActionSelectionRandomCommand());

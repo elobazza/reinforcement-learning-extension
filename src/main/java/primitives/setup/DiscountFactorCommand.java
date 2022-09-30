@@ -11,7 +11,6 @@ public class DiscountFactorCommand implements org.nlogo.api.Command {
 	
     public Syntax getSyntax() {
 	return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()});
-//        return null;
     }
 
     @Override

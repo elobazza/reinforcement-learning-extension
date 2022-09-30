@@ -20,8 +20,7 @@ public class StateDefinitionCommand implements org.nlogo.api.Command {
 
     @Override
     public Syntax getSyntax() {
-//        return SyntaxJ.commandSyntax(new int[] {});
-		return SyntaxJ.commandSyntax(new int[] {Syntax.ListType()});
+        return SyntaxJ.commandSyntax(new int[] {Syntax.ListType()});
     }
 
     @Override

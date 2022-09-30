@@ -13,9 +13,7 @@ public class ActionsCommand implements org.nlogo.api.Command {
 
     @Override
     public Syntax getSyntax() {
-            //List(CommandType | RepeatableType)
-//            return SyntaxJ.commandSyntax(new int[] {});
-		return SyntaxJ.commandSyntax(new int[] {Syntax.CommandType() | Syntax.RepeatableType()});
+        return SyntaxJ.commandSyntax(new int[] {Syntax.CommandType() | Syntax.RepeatableType()});
     }
 
     @Override
