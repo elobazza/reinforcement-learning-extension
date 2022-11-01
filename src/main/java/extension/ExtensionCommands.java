@@ -14,6 +14,7 @@ import primitives.setup.IsEndEpisodeCommand;
 import primitives.setup.LambdaCommand;
 import primitives.setup.LearningRateCommand;
 import primitives.setup.RewardCommand;
+import primitives.setup.DefineAlgorithmCommand;
 import primitives.setup.SetupCommand;
 import primitives.setup.StateDefinitionCommand;
 import primitives.setup.StateDefinitionExtraCommand;
@@ -38,6 +39,7 @@ public class ExtensionCommands extends DefaultClassManager {
         primitiveManager.addPrimitive("actions", new ActionsCommand());
         primitiveManager.addPrimitive("state-def", new StateDefinitionCommand());
         primitiveManager.addPrimitive("state-def-extra", new StateDefinitionExtraCommand());
+        primitiveManager.addPrimitive("define-algorithm", new DefineAlgorithmCommand());
         primitiveManager.addPrimitive("setup", new SetupCommand());
         
         //COMANDOS GO

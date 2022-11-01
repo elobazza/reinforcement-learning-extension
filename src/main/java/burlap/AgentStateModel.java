@@ -1,6 +1,7 @@
 package burlap;
 
 import burlap.behavior.singleagent.learning.tdmethods.QLearning;
+import burlap.behavior.singleagent.learning.tdmethods.SarsaLam;
 import burlap.behavior.valuefunction.QValue;
 import burlap.mdp.core.StateTransitionProb;
 import burlap.mdp.core.action.Action;
@@ -27,6 +28,7 @@ public class AgentStateModel implements FullStateModel {
     private Argument[] args;
     private Context    context;
     private QLearning  learning;
+    private SarsaLam   sarsa;
     
     public AgentStateModel(Argument[] args, Context context) {
         this.args = args;
@@ -56,8 +58,15 @@ public class AgentStateModel implements FullStateModel {
                 action.perform(context, args);
                 System.out.println("EXECUTOU AÇÃO: " + action.toString());
                 
-                for (QValue qvalue : learning.qValues(state)) {
-                    System.out.println("action: " + qvalue.a.actionName() + " , value: " + qvalue.q);
+                if(agent.algorithm == 1) {
+                    for (QValue qvalue : learning.qValues(state)) {
+                        System.out.println("action: " + qvalue.a.actionName() + " , value: " + qvalue.q);
+                    }
+                } 
+                else {
+                    for (QValue qvalue : sarsa.qValues(state)) {
+                        System.out.println("action: " + qvalue.a.actionName() + " , value: " + qvalue.q);
+                    }
                 }
             }
         }
@@ -73,5 +82,9 @@ public class AgentStateModel implements FullStateModel {
     
     public void setQLearning(QLearning learning) {
         this.learning = learning;
+    }
+    
+    public void setSarsa(SarsaLam sarsa) {
+        this.sarsa = sarsa;
     }
 }

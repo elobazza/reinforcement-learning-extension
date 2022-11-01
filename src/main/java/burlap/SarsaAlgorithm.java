@@ -1,7 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package burlap;
 
 import burlap.behavior.policy.EpsilonGreedy;
-import burlap.behavior.singleagent.learning.tdmethods.QLearning;
+import burlap.behavior.singleagent.learning.tdmethods.SarsaLam;
 import burlap.mdp.auxiliary.DomainGenerator;
 import burlap.mdp.core.Domain;
 import burlap.mdp.core.TerminalFunction;
@@ -22,29 +26,29 @@ import org.nlogo.api.ExtensionException;
 import primitives.go.DecayEpsilonCommand;
 
 /**
- * Learning Algorithms Class
+ * SARSA Algorithms Class
  * @author Eloisa Bazzanella
- * @since  april, 2022
+ * @since  september, 2022
  */
-public class QLearningAlgorithm implements DomainGenerator {
+public class SarsaAlgorithm implements DomainGenerator {
     
     private Argument[]           args;
     private Context              context;
-    private QLearning            agentLearning;
+    private SarsaLam            agentLearning;
     private EpsilonGreedy        epsilon;
     private SimulatedEnvironment env;
     private State initialState;
-    private static QLearningAlgorithm      instance = null;
+    private static SarsaAlgorithm instance = null;
 
-    public QLearningAlgorithm(Argument[] args, Context context) {
+    public SarsaAlgorithm(Argument[] args, Context context) {
         this.args = args;
         this.context = context;
         this.epsilon = null;
     }
     
-    public static QLearningAlgorithm getInstance(Argument[] args, Context context) {
+    public static SarsaAlgorithm getInstance(Argument[] args, Context context) {
         if (instance == null) {
-            instance = new QLearningAlgorithm(args, context);
+            instance = new SarsaAlgorithm(args, context);
         }
         return instance;
     }
@@ -52,7 +56,7 @@ public class QLearningAlgorithm implements DomainGenerator {
     public void setup() throws AgentException {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         
-        QLearningAlgorithm gen = new QLearningAlgorithm(args, context);
+        SarsaAlgorithm gen = new SarsaAlgorithm(args, context);
         
         SADomain domain = new SADomain();
         
@@ -70,10 +74,11 @@ public class QLearningAlgorithm implements DomainGenerator {
         
         env = new SimulatedEnvironment(domain, initialState);
        
-        agentLearning = new QLearning(domain, agent.discountFactor, 
-                new SimpleHashableStateFactory(), 0, agent.learningRate);
+        agentLearning = new SarsaLam(domain, agent.discountFactor, 
+                new SimpleHashableStateFactory(), 0, agent.learningRate, agent.lambda);
         
-        stateModel.setQLearning(agentLearning);
+        stateModel.setSarsa(agentLearning);
+        //STATEMODEL
         
         if(agent.actionSelection.method.equals("e-greedy")) {
             epsilon = new EpsilonGreedy(agentLearning, agent.actionSelection.roulette);
@@ -83,9 +88,9 @@ public class QLearningAlgorithm implements DomainGenerator {
     
     public void go(Argument[] args, Context context) throws ExtensionException {
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
-        
-        agentLearning.runLearningEpisode(env, -1);   
-        
+       
+        agentLearning.runLearningEpisode(env, -1);     
+
         if(agent.actionSelection.method.equals("e-greedy")) { 
             new DecayEpsilonCommand().perform(args, context);
             epsilon.setEpsilon(agent.actionSelection.roulette); 
@@ -95,11 +100,13 @@ public class QLearningAlgorithm implements DomainGenerator {
         agent.setEpisode();
         env.resetEnvironment(); 
         System.out.println("-------------------------------");
-        System.out.println("EPISODIO: " + agent.episode);            
+        System.out.println("EPISODIO: " + agent.episode);  
+        //agentLearning.writeQTable("qtable.txt");
     }
     
     @Override
     public Domain generateDomain() {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
+    
 }

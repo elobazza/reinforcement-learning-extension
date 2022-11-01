@@ -27,6 +27,7 @@ public class AgentLearning {
     public AnonymousReporter endEpisode    = null;
     public ActionSelection actionSelection = new ActionSelection();
 
+    public int algorithm   = 0;
     public Double learningRate   = -1.00;
     public Double discountFactor = -1.00;
     public Double lambda = -1.00;
@@ -53,6 +54,10 @@ public class AgentLearning {
           throw new ExtensionException("Lambda must be a value between 0 and 1");
         }
         lambda = l;
+    }
+
+    public void setAlgorithm(int algorithm) {
+        this.algorithm = algorithm;
     }
     
     public void addAction(AnonymousCommand a) {
