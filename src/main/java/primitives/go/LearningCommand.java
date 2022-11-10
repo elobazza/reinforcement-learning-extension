@@ -1,5 +1,6 @@
 package primitives.go;
 
+import burlap.ActorCriticAlgorithm;
 import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
 import org.nlogo.api.ExtensionException;
@@ -25,8 +26,11 @@ public class LearningCommand implements org.nlogo.api.Command {
         if(agent.algorithm == 1) {
             QLearningAlgorithm learning = QLearningAlgorithm.getInstance(args, context);
             learning.go(args, context);
-        } else {
+        } else if(agent.algorithm == 2) {
             SarsaAlgorithm learning = SarsaAlgorithm.getInstance(args, context);
+            learning.go(args, context);
+        } else if(agent.algorithm == 3) {
+            ActorCriticAlgorithm learning = ActorCriticAlgorithm.getInstance(args, context);
             learning.go(args, context);
         }
     }

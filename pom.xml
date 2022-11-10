@@ -21,9 +21,9 @@
         <dependency>
             <groupId>edu.brown.cs.burlap</groupId>
             <artifactId>burlap</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/burlap-3.0.0.jar</systemPath>
+            <systemPath>${project.basedir}/libs/burlap-3.0.1.jar</systemPath>
         </dependency>
         
         <dependency>

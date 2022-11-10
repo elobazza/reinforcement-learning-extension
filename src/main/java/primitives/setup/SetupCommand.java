@@ -1,5 +1,6 @@
 package primitives.setup;
 
+import burlap.ActorCriticAlgorithm;
 import burlap.QLearningAlgorithm;
 import burlap.SarsaAlgorithm;
 import java.util.logging.Level;
@@ -31,8 +32,15 @@ public class SetupCommand implements org.nlogo.api.Command {
             } catch (AgentException ex) {
                 Logger.getLogger(SetupCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
+        } else if (agent.algorithm == 2) {
             SarsaAlgorithm learning = SarsaAlgorithm.getInstance(args, context);
+            try {       
+                learning.setup();
+            } catch (AgentException ex) {
+                Logger.getLogger(SetupCommand.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (agent.algorithm == 3) {
+            ActorCriticAlgorithm learning = ActorCriticAlgorithm.getInstance(args, context);
             try {       
                 learning.setup();
             } catch (AgentException ex) {
