@@ -53,12 +53,12 @@ public class AgentStateModel implements FullStateModel {
         
         AgentLearning agent =  Session.getInstance().getAgent(context.getAgent());
         String actionExecute = a.actionName();
-//        System.out.println("X: " + state.get("XCOR") + " | Y: " + state.get("YCOR"));
+        System.out.println("X: " + state.get("XCOR") + " | Y: " + state.get("YCOR"));
         
         for(AnonymousCommand action : agent.actions) {
             if(actionExecute.equals(action.toString())){
                 action.perform(context, args);
-//                System.out.println("EXECUTOU AÇÃO: " + action.toString());
+                System.out.println("EXECUTOU AÇÃO: " + action.toString());
                 
                 if(agent.algorithm == 1) {
                     for (QValue qvalue : learning.qValues(state)) {
