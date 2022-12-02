@@ -111,3 +111,8 @@ The following primitives are available to activate the Q-Learning algorithm. The
 
 This primitives performs a Learning step of the algorithm that was selected.
 
+---
+### How to embed the Learning Extension
+
+in the NetLogo directory, in the `\app\extensions` subdirectory, you must create a directory called `learningextension` and add the three `.jar` files from the `jars` folder of this repository.
+
