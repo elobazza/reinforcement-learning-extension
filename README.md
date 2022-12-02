@@ -101,9 +101,9 @@ Used to instantiate BURLAP objects with pre-established information. Must be use
 ---
 ### Learning Execution Primitives
 
-After setting up the extension, you must modify your simulation execution procedure (often called `go`) to activate the Q-Learning algorithm.
+After setting up the extension, you must modify your simulation execution procedure (often called `go`) to activate the Learning algorithm.
 
-The following primitives are available to activate the Q-Learning algorithm. These must be executed within an `ask` block, to ask your learner agents to learn.
+The following primitives are available to activate the Learning algorithm. These must be executed within an `ask` block, to ask your learner agents to learn.
 
 ---
 
