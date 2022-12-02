@@ -42,6 +42,10 @@ public class QLearningAlgorithm implements DomainGenerator {
         this.epsilon = null;
     }
     
+    public static void setInstanceNull() {
+        instance = null;
+    }
+    
     public static QLearningAlgorithm getInstance(Argument[] args, Context context) {
         if (instance == null) {
             instance = new QLearningAlgorithm(args, context);

@@ -46,6 +46,10 @@ public class SarsaAlgorithm implements DomainGenerator {
         this.epsilon = null;
     }
     
+    public static void setInstanceNull() {
+        instance = null;
+    }
+    
     public static SarsaAlgorithm getInstance(Argument[] args, Context context) {
         if (instance == null) {
             instance = new SarsaAlgorithm(args, context);

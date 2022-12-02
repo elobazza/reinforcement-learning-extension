@@ -21,6 +21,7 @@ public class Session {
     }
 
     public void addAgent(AgentLearning agent) {
+        agents = new ArrayList<>();
         agents.add(agent);
     }
 

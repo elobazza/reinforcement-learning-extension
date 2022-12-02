@@ -47,6 +47,10 @@ public class ActorCriticAlgorithm implements DomainGenerator {
         this.epsilon = null;
     }
     
+    public static void setInstanceNull() {
+        instance = null;
+    }
+    
     public static ActorCriticAlgorithm getInstance(Argument[] args, Context context) {
         if (instance == null) {
             instance = new ActorCriticAlgorithm(args, context);

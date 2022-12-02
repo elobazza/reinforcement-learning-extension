@@ -26,6 +26,7 @@ public class SetupCommand implements org.nlogo.api.Command {
         AgentLearning agent = Session.getInstance().getAgent(context.getAgent());
 
         if(agent.algorithm == 1) {
+            QLearningAlgorithm.setInstanceNull();
             QLearningAlgorithm learning = QLearningAlgorithm.getInstance(args, context);
             try {       
                 learning.setup();
@@ -33,6 +34,7 @@ public class SetupCommand implements org.nlogo.api.Command {
                 Logger.getLogger(SetupCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (agent.algorithm == 2) {
+            SarsaAlgorithm.setInstanceNull();
             SarsaAlgorithm learning = SarsaAlgorithm.getInstance(args, context);
             try {       
                 learning.setup();
@@ -40,12 +42,15 @@ public class SetupCommand implements org.nlogo.api.Command {
                 Logger.getLogger(SetupCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (agent.algorithm == 3) {
+            ActorCriticAlgorithm.setInstanceNull();
             ActorCriticAlgorithm learning = ActorCriticAlgorithm.getInstance(args, context);
             try {       
                 learning.setup();
             } catch (AgentException ex) {
                 Logger.getLogger(SetupCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            
         }
         
     }    

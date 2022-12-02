@@ -25,7 +25,7 @@ public class StateDefinitionCommand implements org.nlogo.api.Command {
 
     @Override
     public void perform(Argument[] args, Context context) throws ExtensionException {				
-        AgentLearning a =  Session.getInstance().getAgent(context.getAgent());
+        AgentLearning a = Session.getInstance().getAgent(context.getAgent());
         Turtle turtle = ((World)context.world()).getTurtle(context.getAgent().id());
 
         if(a == null) {
