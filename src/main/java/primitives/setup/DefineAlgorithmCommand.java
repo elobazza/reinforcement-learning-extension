@@ -18,7 +18,7 @@ import org.nlogo.core.SyntaxJ;
 public class DefineAlgorithmCommand implements org.nlogo.api.Command {
 
     public Syntax getSyntax() {
-        return SyntaxJ.commandSyntax(new int[] {Syntax.NumberType()});
+        return SyntaxJ.commandSyntax(new int[] {Syntax.StringType()});
     }
 
     @Override
@@ -30,6 +30,6 @@ public class DefineAlgorithmCommand implements org.nlogo.api.Command {
             "You should first define a state definition to this agent. Agent id: " + context.getAgent().id());
         }
 
-        agent.setAlgorithm(args[0].getIntValue());
+        agent.setAlgorithm(args[0].getString());
     }
 }

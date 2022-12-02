@@ -25,7 +25,7 @@ public class SetupCommand implements org.nlogo.api.Command {
     public void perform(Argument[] args, Context context) throws ExtensionException {
         AgentLearning agent = Session.getInstance().getAgent(context.getAgent());
 
-        if(agent.algorithm == 1) {
+        if(agent.algorithm.equals("qlearning")) {
             QLearningAlgorithm.setInstanceNull();
             QLearningAlgorithm learning = QLearningAlgorithm.getInstance(args, context);
             try {       
@@ -33,7 +33,7 @@ public class SetupCommand implements org.nlogo.api.Command {
             } catch (AgentException ex) {
                 Logger.getLogger(SetupCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (agent.algorithm == 2) {
+        } else if (agent.algorithm.equals("sarsa-lambda")) {
             SarsaAlgorithm.setInstanceNull();
             SarsaAlgorithm learning = SarsaAlgorithm.getInstance(args, context);
             try {       
@@ -41,7 +41,7 @@ public class SetupCommand implements org.nlogo.api.Command {
             } catch (AgentException ex) {
                 Logger.getLogger(SetupCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (agent.algorithm == 3) {
+        } else if (agent.algorithm.equals("actor-critic")) {
             ActorCriticAlgorithm.setInstanceNull();
             ActorCriticAlgorithm learning = ActorCriticAlgorithm.getInstance(args, context);
             try {       
